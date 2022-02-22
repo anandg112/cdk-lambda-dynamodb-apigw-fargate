@@ -1,13 +1,16 @@
 #!/usr/bin/env python3
-import os
 
-import aws_cdk as cdk
+from aws_cdk import (App)
 
-from cdk_lambda_dynamodb_fargate.cdk_lambda_dynamodb_fargate_stack import CdkLambdaDynamodbFargateStack
+from cdk_lambda_dynamodb_fargate.cdk_lambda_dynamodb_stack import CdkLambdaDynamodbStack
+from cdk_lambda_dynamodb_fargate.cdk_fargate_stack import FargateStack
 
 
-app = cdk.App()
-CdkLambdaDynamodbFargateStack(app, "CdkLambdaDynamodbFargateStack",
+
+app = App()
+app_env = {"region": "us-east-1"}
+
+CdkLambdaDynamodbStack(app, "CdkLambdaDynamodbStack", env=app_env
     # If you don't specify 'env', this stack will be environment-agnostic.
     # Account/Region-dependent features and context lookups will not work,
     # but a single synthesized template can be deployed anywhere.
@@ -24,5 +27,6 @@ CdkLambdaDynamodbFargateStack(app, "CdkLambdaDynamodbFargateStack",
 
     # For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html
     )
+FargateStack(app, "cdk-fargate", env=app_env)
 
 app.synth()

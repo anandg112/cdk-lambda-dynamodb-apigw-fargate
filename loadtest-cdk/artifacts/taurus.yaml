@@ -1,0 +1,8 @@
+execution:
+- executor: molotov
+  concurrency: 10 #number of molotov workers
+  iterations: 5 #iteration limit for the test
+  ramp-up: 30s
+  hold-for: 2m
+  scenario: 
+    script: /scripts/loadtest.py

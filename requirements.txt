@@ -1,2 +1,5 @@
-aws-cdk-lib==2.12.0
+aws-cdk-lib==2.13.0
+aws-cdk.aws-dynamodb
+aws-cdk.aws-lambda
+aws-cdk.aws-apigateway
 constructs>=10.0.0,<11.0.0
