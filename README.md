@@ -1,6 +1,8 @@
 
 # Welcome to the CDK Python project!
 
+A todo API deployed on lambda, API Gateway and DynamoDB. Load-tested with [molotov](https://molotov.readthedocs.io/en/stable/) and [Taurus](https://gettaurus.org/) automated testing framework running on Fargate container
+
 The `cdk.json` file tells the CDK Toolkit how to execute your app.
 
 This project is set up like a standard Python project.  The initialization
