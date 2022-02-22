@@ -4,7 +4,6 @@ from aws_cdk import (
     aws_dynamodb,
     aws_lambda,
     aws_apigateway
-    # aws_sqs as sqs,
 )
 from constructs import Construct
 
@@ -12,14 +11,6 @@ class CdkLambdaDynamodbStack(Stack):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
-
-        # The code that defines your stack goes here
-
-        # example resource
-        # queue = sqs.Queue(
-        #     self, "CdkLambdaDynamodbFargateQueue",
-        #     visibility_timeout=Duration.seconds(300),
-        # )
 
         #define the tables stores Todo items
         table = aws_dynamodb.Table(self, "Table", partition_key=aws_dynamodb.Attribute(
@@ -72,6 +63,7 @@ class CdkLambdaDynamodbStack(Stack):
         update_lambda_integration = aws_apigateway.LambdaIntegration(update_handler)
         delete_lambda_integration = aws_apigateway.LambdaIntegration(delete_handler)
         
+        #define REST API model and associate methods with LambdaIntegrations
         api.root.add_method('ANY')
         
         todos = api.root.add_resource('todos')
